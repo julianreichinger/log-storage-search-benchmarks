@@ -1,0 +1,39 @@
+plugins {
+  id 'org.ajoberstar.grgit' version '4.1.1'
+}
+
+allprojects {
+  apply from: rootProject.file('gradle/repositories.gradle')
+}
+
+subprojects {
+  group = 'com.dynatrace.logsearch'
+  apply plugin: 'java'
+  apply plugin: 'java-library'
+
+  apply from: rootProject.file('gradle/checkstyle.gradle')
+  apply from: rootProject.file('gradle/java_dependencies.gradle')
+
+  tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+  }
+
+  tasks.withType(Javadoc).configureEach {
+    it.options.addStringOption('Xdoclint:html,reference,syntax', '-quiet')
+  }
+
+  test {
+    useJUnitPlatform()
+  }
+
+  java {
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+  }
+}
+
+apply from: 'gradle/ide-idea.gradle'
+
+tasks.named('wrapper').configure {
+  gradleVersion = '7.5.1'
+}

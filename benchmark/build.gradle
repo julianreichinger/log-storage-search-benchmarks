@@ -1,0 +1,30 @@
+plugins {
+    id "me.champeau.jmh" version "0.6.6"
+}
+
+dependencies {
+    implementation project(":data-analysis")
+
+    implementation libraries.eclipseCollections
+	implementation libraries.guava
+    implementation libraries.hash4j
+	implementation libraries.log4j_api
+	implementation libraries.log4j_core
+    implementation libraries.lucene_codecs
+    implementation libraries.lucene_core
+    implementation libraries.lucene_queries
+    implementation libraries.size_of
+    implementation libraries.zstd
+
+    testImplementation libraries.junit_api
+    testImplementation libraries.junit_params
+    testImplementation libraries.junit_runtime
+    testImplementation libraries.assertj_core
+    testImplementation libraries.mockito_core
+}
+
+jmhJar {
+    archiveFileName.set('benchmarks.jar')
+    // Needed so log4j works within the shaded jmh jar
+    exclude "**/Log4j2Plugins.dat"
+}

@@ -1,0 +1,4 @@
+include 'benchmark'
+include 'data-analysis'
+
+rootProject.name = 'log-storage-search-benchmarks'

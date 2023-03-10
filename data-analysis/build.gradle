@@ -1,0 +1,24 @@
+plugins {
+	id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+dependencies {
+	implementation libraries.dynahist
+	implementation libraries.eclipseCollections
+	implementation libraries.guava
+	implementation libraries.hash4j
+	implementation libraries.log4j_api
+	implementation libraries.log4j_core
+
+	testImplementation libraries.junit_api
+	testImplementation libraries.junit_params
+	testImplementation libraries.junit_runtime
+	testImplementation libraries.assertj_core
+	testImplementation libraries.mockito_core
+}
+
+jar {
+	manifest {
+		attributes "Main-Class": "com.dynatrace.index.data.analysis.Launcher"
+	}
+}

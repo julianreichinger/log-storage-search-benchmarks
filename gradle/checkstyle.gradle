@@ -1,0 +1,15 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+	toolVersion '8.19'
+}
+
+tasks.withType(Checkstyle).configureEach {
+	reports {
+		xml.required = true
+		html.required = true
+		html.stylesheet rootProject.resources.text.fromFile('config/checkstyle/checkstyle-noframes-severity-sorted.xsl')
+		ignoreFailures = false
+		showViolations = true
+	}
+}
